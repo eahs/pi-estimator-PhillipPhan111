@@ -8,6 +8,7 @@ namespace PiEstimator
         {
             long n;
             
+            double acc = 0;
             Console.WriteLine("Pi Estimator");
             Console.WriteLine("================================================");
 
@@ -23,11 +24,23 @@ namespace PiEstimator
         static double EstimatePi(long n)
         {
             Random rand = new Random(System.Environment.TickCount);
-            double pi = 0.0;
+            double totalToss = 0;
+            double acc = 0;
+            
+            while (totalToss < n)
+            {
+                totalToss++;
+                double xpos = rand.NextDouble();
+                double ypos = rand.NextDouble();
+                if (Math.Sqrt((xpos * xpos) + (ypos * ypos)) <= 1)
+                {
+                    acc++;
+                }
+                
+            }
 
-            // TODO: Calculate Pi
-
-            return pi;
+            double pie = 4 * acc / totalToss;
+            return pie;
         }
 
         static long GetNumber(string prompt)
